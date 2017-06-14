@@ -1,5 +1,5 @@
 using Xunit;
-using AirlinePlanner.Objects;
+using RecipeBox.Objects;
 using System;
 using System.Data;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace RecipeBox
 
 
     [Fact]
-    public void Recipe_DatabaseIsEmpty_True
+    public void Recipe_DatabaseIsEmpty_True()
     {
       //Arrange:  manual data
       List<Recipe> expectedList = new List<Recipe>{};

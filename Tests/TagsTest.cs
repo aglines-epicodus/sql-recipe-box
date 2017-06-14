@@ -1,5 +1,5 @@
 using Xunit;
-using AirlinePlanner.Objects;
+using RecipeBox.Objects;
 using System;
 using System.Data;
 using System.Collections.Generic;

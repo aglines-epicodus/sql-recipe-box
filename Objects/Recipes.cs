@@ -41,7 +41,7 @@ namespace RecipeBox.Objects
     {
       _instructions = newInstructions;
     }
-    
+
 
 
 

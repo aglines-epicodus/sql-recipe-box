@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace AirlinePlanner.Objects
+namespace RecipeBox.Objects
 {
   public class DB
   {
