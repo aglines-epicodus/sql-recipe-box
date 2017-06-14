@@ -27,6 +27,15 @@ namespace RecipeBox
       Assert.Equal(expectedList, resultList);
     }
 
+
+    [Fact]
+    public void Tag_Equals_TrueForIdenticalObjects()
+    {
+      Tag firstTag = new Tag("dinner");
+      Tag secondTag = new Tag("dinner");
+      Assert.Equal(firstTag, secondTag);
+    }
+
     [Fact]
     public void Dispose()
     {

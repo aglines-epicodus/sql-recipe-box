@@ -27,6 +27,18 @@ namespace RecipeBox
       Assert.Equal(expectedList, resultList);
     }
 
+
+    [Fact]
+    public void Recipe_Equals_TrueForIdenticalObjects()
+    {
+      Recipe firstRecipe = new Recipe("soup", "heat up");
+      Recipe secondRecipe = new Recipe("soup", "heat up");
+      Assert.Equal(firstRecipe, secondRecipe);
+    }
+
+
+
+
     [Fact]
     public void Dispose()
     {
