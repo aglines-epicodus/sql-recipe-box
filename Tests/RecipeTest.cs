@@ -37,6 +37,18 @@ namespace RecipeBox
     }
 
 
+    [Fact]
+    public void Recipe_Save_SavesRecipeToDb()
+    {
+      Recipe newRecipe = new Recipe("soup", "heat up");
+
+      newRecipe.Save();
+      Recipe savedRecipe = Recipe.GetAll()[0];
+
+      Assert.Equal(newRecipe, savedRecipe);
+    }
+
+
 
 
     [Fact]
