@@ -15,7 +15,7 @@ namespace RecipeBox
     {
     DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=recipebox_test;Integrated Security=SSPI;";
     }
-
+////////////////////////////////////////////////////////////
     [Fact]
     public void Recipe_DatabaseIsEmpty_True()
     {
@@ -27,7 +27,7 @@ namespace RecipeBox
       Assert.Equal(expectedList, resultList);
     }
 
-
+////////////////////////////////////////////////////////////
     [Fact]
     public void Recipe_Equals_TrueForIdenticalObjects()
     {
@@ -36,7 +36,7 @@ namespace RecipeBox
       Assert.Equal(firstRecipe, secondRecipe);
     }
 
-
+////////////////////////////////////////////////////////////
     [Fact]
     public void Recipe_Save_SavesRecipeToDb()
     {
@@ -48,7 +48,41 @@ namespace RecipeBox
       Assert.Equal(newRecipe, savedRecipe);
     }
 
+////////////////////////////////////////////////////////////
+    [Fact]
+    public void Tag_AddTagsToRecipe_True()
+    {
+      //arrange = manual data
+      // add one recipe and two tags
+      Recipe newRecipe = new Recipe("soup", "heat up");
+      newRecipe.Save();
 
+      Tag firstTag = new Tag("first");
+      Tag secondTag = new Tag("second");
+      firstTag.Save();
+      secondTag.Save();
+
+    //Act
+      newRecipe.AddTag(firstTag);
+      newRecipe.AddTag(secondTag);
+
+      List<Tag> result = newRecipe.GetTags();
+      List<Tag> expected = new List<Tag>{firstTag, secondTag};
+
+      Assert.Equal(result, expected);
+    }
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////
     [Fact]
     public void Dispose()
     {

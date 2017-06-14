@@ -27,6 +27,7 @@ namespace RecipeBox
       Assert.Equal(expectedList, resultList);
     }
 
+    ////////////////////////////////////////////////////////////
 
     [Fact]
     public void Tag_Equals_TrueForIdenticalObjects()
@@ -36,6 +37,7 @@ namespace RecipeBox
       Assert.Equal(firstTag, secondTag);
     }
 
+    ////////////////////////////////////////////////////////////
 
     [Fact]
     public void Tag_Save_SavesTagToDb()
@@ -48,6 +50,27 @@ namespace RecipeBox
       Assert.Equal(newTag, savedTag);
     }
 
+    ////////////////////////////////////////////////////////////
+
+    [Fact]
+    public void Recipe_AddRecipesToOneTag_True()
+    {
+      //arrange manual data
+      Tag newTag = new Tag("soupy");
+      newTag.Save();
+
+      Recipe firstRecipe = new Recipe("soup", "heat up");
+      Recipe secondRecipe = new Recipe("another soup", "heat up");
+      firstRecipe.Save();
+      secondRecipe.Save();
+
+      newTag.AddRecipe(firstRecipe);
+      newTag.AddRecipe(secondRecipe);
+
+      List<Recipe> result = newTag.GetRecipes();
+      List<Recipe> expected = new List<Recipe>{firstRecipe, secondRecipe};
+
+    }
 
 
 
@@ -56,8 +79,7 @@ namespace RecipeBox
 
 
 
-
-
+    ////////////////////////////////////////////////////////////
 
     [Fact]
     public void Dispose()
