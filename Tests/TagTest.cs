@@ -72,14 +72,29 @@ namespace RecipeBox
 
     }
 
+////////////////////////////////////////////////////////////
+  [Fact]
+  public void GetRecipes_ReturnAllRecipesFromOneTag_True()
+  {
+    Tag testTag = new Tag("hearty");
+    testTag.Save();
+
+    Recipe firstRecipe = new Recipe("soup", "heat");
+    Recipe secondRecipe = new Recipe("burger", "fry");
+    firstRecipe.Save();
+    secondRecipe.Save();
+
+    testTag.AddRecipe(firstRecipe);
+    testTag.AddRecipe(secondRecipe);
+    List<Recipe> expectedRecipes = new List<Recipe>{firstRecipe, secondRecipe};
+    List<Recipe> resultRecipes = new List<Recipe>.GetRecipes();
+
+    Assert.Equal(expectedRecipes, resultRecipes);
+  }
 
 
 
-
-
-
-
-    ////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
     [Fact]
     public void Dispose()

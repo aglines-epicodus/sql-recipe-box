@@ -82,7 +82,6 @@ namespace RecipeBox.Objects
 
 
 ///////////////////////////////////////////////
-
     public static List<Tag> GetAll()
     {
       SqlConnection conn = DB.Connection();
@@ -116,7 +115,6 @@ namespace RecipeBox.Objects
     }
 
     ///////////////////////////////////////////////
-
     public void AddRecipe(Recipe newRecipe)
     {
       SqlConnection conn = DB.Connection();
@@ -141,7 +139,7 @@ namespace RecipeBox.Objects
       }
     }
 
-    ///////////////////////////////////////////////
+///////////////////////////////////////////////
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -156,14 +154,8 @@ namespace RecipeBox.Objects
 
 
 
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////
+    
 
 
 

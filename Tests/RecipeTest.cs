@@ -71,6 +71,26 @@ namespace RecipeBox
 
       Assert.Equal(result, expected);
     }
+////////////////////////////////////////////////////////////
+
+    [Fact]
+    public void GetTags_ReturnAllTagsFromOneRecipe_True()
+    {
+      Recipe testRecipe = new Recipe("soup", "heat the soup");
+      testRecipe.Save();
+
+      Tag firstTag = new Tag("soupy");
+      Tag secondTag = new Tag("tasty");
+      firstTag.Save();
+      secondTag.Save();
+
+      testRecipe.AddTag(firstTag);
+      testRecipe.AddTag(secondTag);
+      List<Tag> expectedTags = new List<Tag>{firstTag, secondTag};
+      List<Tag> resultTags = new List<Tag>.GetTags();
+
+      Assert.Equal(resultTags, expectedTags);
+    }
 
 
 
