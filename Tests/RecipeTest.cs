@@ -50,7 +50,7 @@ namespace RecipeBox
 
 ////////////////////////////////////////////////////////////
     [Fact]
-    public void Tag_AddTagsToRecipe_True()
+    public void Tag_AddTagsToOneRecipe_True()
     {
       //arrange = manual data
       // add one recipe and two tags
