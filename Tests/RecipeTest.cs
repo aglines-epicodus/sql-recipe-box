@@ -16,6 +16,9 @@ namespace RecipeBox
     DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=recipebox_test;Integrated Security=SSPI;";
     }
 
-
+    public void Dispose()
+    {
+      Recipe.DeleteAll();
+    }
   }
 }
