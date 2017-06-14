@@ -87,7 +87,7 @@ namespace RecipeBox
     testTag.AddRecipe(firstRecipe);
     testTag.AddRecipe(secondRecipe);
     List<Recipe> expectedRecipes = new List<Recipe>{firstRecipe, secondRecipe};
-    List<Recipe> resultRecipes = new List<Recipe>.GetRecipes();
+    List<Recipe> resultRecipes = testTag.GetRecipes();
 
     Assert.Equal(expectedRecipes, resultRecipes);
   }
@@ -100,6 +100,7 @@ namespace RecipeBox
     public void Dispose()
     {
       Tag.DeleteAll();
+      Recipe.DeleteAll();
     }
   }
 }

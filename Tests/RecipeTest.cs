@@ -87,7 +87,7 @@ namespace RecipeBox
       testRecipe.AddTag(firstTag);
       testRecipe.AddTag(secondTag);
       List<Tag> expectedTags = new List<Tag>{firstTag, secondTag};
-      List<Tag> resultTags = new List<Tag>.GetTags();
+      List<Tag> resultTags = testRecipe.GetTags();
 
       Assert.Equal(resultTags, expectedTags);
     }
@@ -106,7 +106,9 @@ namespace RecipeBox
     [Fact]
     public void Dispose()
     {
+      // Console.WriteLine("dispose in RecipeTest runs");
       Recipe.DeleteAll();
+      Tag.DeleteAll();
     }
   }
 }

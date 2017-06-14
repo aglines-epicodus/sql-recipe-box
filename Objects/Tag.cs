@@ -56,10 +56,9 @@ namespace RecipeBox.Objects
           SqlConnection conn = DB.Connection();
           conn.Open();
 
-          SqlCommand cmd = new SqlCommand("INSERT INTO tags (name) OUTPUT INSERTED.id VALUES (@Name);", conn);
+          SqlCommand cmd = new SqlCommand("INSERT INTO tags (name) OUTPUT INSERTED.id VALUES (@Name)", conn);
 
           SqlParameter nameParam = new SqlParameter("@Name", this.GetName());
-
           cmd.Parameters.Add(nameParam);
 
           SqlDataReader rdr = cmd.ExecuteReader();
@@ -114,13 +113,13 @@ namespace RecipeBox.Objects
       return allTags;
     }
 
-    ///////////////////////////////////////////////
+///////////////////////////////////////////////
     public void AddRecipe(Recipe newRecipe)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO join_recipes_tags (recipe_id, tag_id) VALUES (@RecipeId, @TagId)", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO join_recipes_tags (id_recipes, id_tags) VALUES (@RecipeId, @TagId)", conn);
 
       SqlParameter RecipeIdParam = new SqlParameter();
       RecipeIdParam.ParameterName = "@RecipeId";
@@ -140,6 +139,45 @@ namespace RecipeBox.Objects
     }
 
 ///////////////////////////////////////////////
+    public List<Recipe> GetRecipes()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT recipes.* FROM tags JOIN join_recipes_tags ON (tags.id = join_recipes_tags.id_tags) JOIN recipes ON (recipes.id = join_recipes_tags.id_recipes) WHERE tags.id = @TagId", conn);
+
+      SqlParameter TagIdParam = new SqlParameter();
+      TagIdParam.ParameterName = "@TagId";
+      TagIdParam.Value = this.GetId().ToString();
+
+      cmd.Parameters.Add(TagIdParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Recipe> allRecipes = new List<Recipe>{};
+
+      while (rdr.Read())
+      {
+        int recipeId = rdr.GetInt32(0);
+        string recipeName = rdr.GetString(1);
+        string recipeInstructions = rdr.GetString(2);
+
+        Recipe newRecipe = new Recipe(recipeName, recipeInstructions, recipeId);
+        allRecipes.Add(newRecipe);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return allRecipes;
+    }
+
+
+///////////////////////////////////////////////
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
@@ -155,12 +193,6 @@ namespace RecipeBox.Objects
 
 
 ///////////////////////////////////////////////
-    
-
-
-
-
-
 
 
 
