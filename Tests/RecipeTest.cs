@@ -11,12 +11,10 @@ namespace RecipeBox
 
   public class RecipeTest : IDisposable
   {
-
     public RecipeTest()
     {
     DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=recipebox_test;Integrated Security=SSPI;";
     }
-
 
     [Fact]
     public void Recipe_DatabaseIsEmpty_True()
