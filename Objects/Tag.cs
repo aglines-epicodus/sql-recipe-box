@@ -9,10 +9,12 @@ namespace RecipeBox.Objects
     private int _id;
     private string _name;
 
+
     public Tag(string Name, int Id = 0)
     {
       _name = Name;
       _id = Id;
+
     }
 
     public int GetId()
@@ -31,7 +33,25 @@ namespace RecipeBox.Objects
     {
       _name = newName;
     }
+///////////////////////////////////////////////
+    public override bool Equals(System.Object otherTag)
+    {
+      if (!(otherTag is Tag))
+      {
+        return false;
+      }
+      else
+      {
+        Tag newTag = (Tag) otherTag;
+        bool nameEquality = this.GetName() == newTag.GetName();
+        bool idEquality = this.GetId() == newTag.GetId();
 
+        return (nameEquality && idEquality);
+      }
+    }
+
+
+///////////////////////////////////////////////
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
