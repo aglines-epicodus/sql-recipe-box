@@ -59,30 +59,41 @@ namespace RecipeBox.Objects
       }
     }
 
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////
-    public static void DeleteAll()
+    public void Save()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM recipes;", conn);
-      cmd.ExecuteNonQuery();
+      SqlCommand cmd = new SqlCommand("INSERT INTO recipes (name, instructions) OUTPUT INSERTED.id VALUES (@Name, @Instructions);", conn);
 
+      SqlParameter nameParam = new SqlParameter("@Name", this.GetName());
+      SqlParameter instructionsParam = new SqlParameter("@Instructions", this.GetInstructions());
+      cmd.Parameters.Add(nameParam);
+      cmd.Parameters.Add(instructionsParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
       if(conn != null)
       {
         conn.Close();
       }
+
     }
+
+
+
+
+
 ///////////////////////////////////////////////
     public static List<Recipe> GetAll()
     {
@@ -119,6 +130,20 @@ namespace RecipeBox.Objects
 
 
 
+    ///////////////////////////////////////////////
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM recipes;", conn);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 
 
