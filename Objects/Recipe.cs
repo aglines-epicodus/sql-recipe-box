@@ -198,6 +198,48 @@ namespace RecipeBox.Objects
       return allTags;
     }
 
+///////////////////////////////////////////////
+
+    public void Update(string newName, string newInstructions)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE recipes SET name = @NewName, instructions = @NewInstructions OUTPUT INSERTED.name WHERE id = @RecipeId", conn);
+
+      SqlParameter newNameParam = new SqlParameter();
+      newNameParam.ParameterName = "@NewName";
+      newNameParam.Value = newName;
+
+      SqlParameter newInstructionsParam = new SqlParameter();
+      newInstructionsParam.ParameterName = "@NewInstructions";
+      newInstructionsParam.Value = newInstructions;
+
+      SqlParameter recipeIdParam = new SqlParameter();
+      recipeIdParam.ParameterName = "@RecipeId";
+      recipeIdParam.Value = this.GetId();
+
+      cmd.Parameters.Add(newNameParam);
+      cmd.Parameters.Add(newInstructionsParam);
+      cmd.Parameters.Add(recipeIdParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+    }
 
 
 ///////////////////////////////////////////////
