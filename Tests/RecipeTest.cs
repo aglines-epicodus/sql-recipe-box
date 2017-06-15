@@ -118,13 +118,11 @@ namespace RecipeBox
     //   Recipe testRecipe = new Recipe(name, instructions);
     //   testRecipe.Save();
     //
-    //   Recipe.DeleteOneRecipeAndAllJoinedTags();
+    //   testRecipe.DeleteOneRecipeAndAllJoinedTags();
+    //   string result
     //
-    //
-    //   Assert.Equal()
+    //   Assert.Equal();
     // }
-
-
 
 ////////////////////////////////////////////////////////////
     [Fact]

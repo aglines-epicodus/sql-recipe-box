@@ -105,7 +105,7 @@ namespace RecipeBox
 
     string resultName = testTag.GetName();
 
-    Assert.Equal(true, false);
+    Assert.Equal(resultName, newName);
   }
 
 ////////////////////////////////////////////////////////////

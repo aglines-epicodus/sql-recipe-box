@@ -1,4 +1,6 @@
-<h1>All Recipes</h1>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
 
 <ul>
   @if (@Model.Count!= 0)
@@ -8,7 +10,7 @@
       <li>@recipes.GetName()</li>
     }
   }
-  @else
+  else
   {
     <h3>No recipes to display</h3>
   }
