@@ -110,6 +110,24 @@ namespace RecipeBox
       Assert.Equal(resultName, "burgers");
     }
 ////////////////////////////////////////////////////////////
+    // [Fact]
+    // public void Delete_DeleteSingleFromDb_True()
+    // {
+    //   string name = "bad food";
+    //   string instructions = "throw it in the trash";
+    //   Recipe testRecipe = new Recipe(name, instructions);
+    //   testRecipe.Save();
+    //
+    //   Recipe.Delete();
+    //
+    //   expectedName
+    //
+    //   Assert.Equal()
+    // }
+
+
+
+////////////////////////////////////////////////////////////
     [Fact]
     public void Dispose()
     {

@@ -203,11 +203,11 @@ namespace RecipeBox.Objects
         this._name = rdr.GetString(0);
       }
 
-      while (rdr != null)
+      if (rdr != null)
       {
         rdr.Close();
       }
-      while (conn != null)
+      if (conn != null)
       {
         conn.Close();
       }
