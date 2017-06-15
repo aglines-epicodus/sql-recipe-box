@@ -92,7 +92,21 @@ namespace RecipeBox
     Assert.Equal(expectedRecipes, resultRecipes);
   }
 
+////////////////////////////////////////////////////////////
+  [Fact]
+  public void Update_UpdatesTagInDb()
+  {
+    string name = "newTag, idk, lunch?";
+    Tag testTag = new Tag(name);
+    testTag.Save();
 
+    string newName = "no, dinner!";
+    testTag.Update(newName);
+
+    string resultName = testTag.GetName();
+
+    Assert.Equal(resultName, "no, dinner!");
+  }
 
 ////////////////////////////////////////////////////////////
 

@@ -178,6 +178,42 @@ namespace RecipeBox.Objects
 
 
 ///////////////////////////////////////////////
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE tags SET name = @NewName OUTPUT INSERTED.name WHERE id = @TagId", conn);
+
+      SqlParameter newNameParam = new SqlParameter();
+      newNameParam.ParameterName = "@NewName";
+      newNameParam.Value = newName;
+
+      SqlParameter tagIdParam = new SqlParameter();
+      tagIdParam.ParameterName = "@TagId";
+      tagIdParam.Value = this.GetId();
+
+      cmd.Parameters.Add(newNameParam);
+      cmd.Parameters.Add(tagIdParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      while (rdr != null)
+      {
+        rdr.Close();
+      }
+      while (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+///////////////////////////////////////////////
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
