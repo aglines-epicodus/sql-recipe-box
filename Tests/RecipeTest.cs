@@ -111,16 +111,15 @@ namespace RecipeBox
     }
 ////////////////////////////////////////////////////////////
     // [Fact]
-    // public void Delete_DeleteSingleFromDb_True()
+    // public void Delete_DeleteOneRecipeAndAllJoinedTags_True()
     // {
     //   string name = "bad food";
     //   string instructions = "throw it in the trash";
     //   Recipe testRecipe = new Recipe(name, instructions);
     //   testRecipe.Save();
     //
-    //   Recipe.Delete();
+    //   Recipe.DeleteOneRecipeAndAllJoinedTags();
     //
-    //   expectedName
     //
     //   Assert.Equal()
     // }

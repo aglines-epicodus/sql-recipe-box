@@ -214,6 +214,27 @@ namespace RecipeBox.Objects
     }
 
 ///////////////////////////////////////////////
+    public void DeleteOneTagAndAllJoinedRecipes()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM tags WHERE id = @TagId; DELETE FROM join_recipes_tags WHERE id_tags = @TagId", conn);
+
+      SqlParameter tagIdParam = new SqlParameter();
+      tagIdParam.ParameterName = "@TagId";
+      tagIdParam.Value = this.GetId();
+
+      cmd.Parameters.Add(tagIdParam);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+///////////////////////////////////////////////
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
